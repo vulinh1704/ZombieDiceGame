@@ -10,16 +10,19 @@ class ZombieDie extends Die {
         super(6);
         this.color = color;
         this.nFeet = 2;
-
-        if (color.equals("Green")) {
-            this.nBrains = 3;
-            this.nShotguns = 1;
-        } else if (color.equals("Red")) {
-            this.nBrains = 1;
-            this.nShotguns = 3;
-        } else if (color.equals("Yellow")) {
-            this.nBrains = 2;
-            this.nShotguns = 2;
+        switch (color) {
+            case "Green" -> {
+                this.nBrains = 3;
+                this.nShotguns = 1;
+            }
+            case "Red" -> {
+                this.nBrains = 1;
+                this.nShotguns = 3;
+            }
+            case "Yellow" -> {
+                this.nBrains = 2;
+                this.nShotguns = 2;
+            }
         }
     }
 
