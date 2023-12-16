@@ -38,8 +38,10 @@ class ZombieDie extends Die {
             return -1;
         } else if (result == 3 || Objects.equals(this.color, "Red")) {
             return -2;
+        } else if (result == 2) {
+            return -1;
         } else {
-            return 1;
+            return -2;
         }
     }
 
@@ -48,10 +50,8 @@ class ZombieDie extends Die {
             return "Footsteps";
         } else if (result == -1) {
             return "Brain";
-        } else if (result == -2) {
-            return "Shotgun";
         } else {
-            return "Unknown";
+            return "Shotgun";
         }
     }
 

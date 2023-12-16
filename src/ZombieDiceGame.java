@@ -31,7 +31,7 @@ public class ZombieDiceGame {
         ArrayList<ZombieDie> zombieDice = getZombieDice();
         int shotguns = 0;
         int brains = 0;
-        while (players.size() != currentPlayer + 1) {
+        while (true) {
             if (reRoll != currentPlayer) {
                 zombieDice = getZombieDice();
             }
@@ -59,24 +59,25 @@ public class ZombieDiceGame {
                 }
             }
 
+            boolean checkIncrementCurrentPlayer = false;
             if (player.getShotguns() >= 3) {
                 player.setScore(0);
                 System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
                 shotguns = 0;
                 brains = 0;
-                currentPlayer++;
+                checkIncrementCurrentPlayer = true;
             } else if (player.getScore() >= 13) {
                 brains = 0;
                 shotguns = 0;
                 System.out.println("\nPlayer " + player.getName() + "'s reaches the score: " + player.getScore() + " WINN!!");
-                currentPlayer++;
+                checkIncrementCurrentPlayer = true;
             } else {
                 if (zombieDice.size() == 0) {
                     System.out.println("\nThe player " + player.getName() + "'s reaches the score: " + player.getScore());
                     System.out.println("\nPlayer " + player.getName() + "'s turn has ended!");
                     brains = 0;
                     shotguns = 0;
-                    currentPlayer++;
+                    checkIncrementCurrentPlayer = true;
                 } else {
                     reRoll = currentPlayer;
                     player.setScore(player.getScore() + brains);
@@ -86,18 +87,7 @@ public class ZombieDiceGame {
             }
 
             if (players.size() == currentPlayer + 1) {
-                int checkShotgunsPlayers = 0;
-                for (Player p : players) {
-                    if (p.getShotguns() >= 3) {
-                        checkShotgunsPlayers++;
-                    }
-                }
-                if (checkShotgunsPlayers == players.size()) {
-                    for (Player p : players) {
-                        p.setShotguns(0);
-                    }
-                }
-
+                checkShotGuns(players);
                 boolean flag = false;
                 for (Player p : players) {
                     if (p.getScore() >= 13) {
@@ -110,6 +100,10 @@ public class ZombieDiceGame {
                     currentPlayer = 0;
                     reRoll = -1;
                 }
+            }
+
+            if(checkIncrementCurrentPlayer) {
+                currentPlayer++;
             }
         }
 
@@ -125,6 +119,20 @@ public class ZombieDiceGame {
             }
         }
 
+    }
+
+    public static void checkShotGuns(List<Player> players) {
+        int checkShotgunsPlayers = 0;
+        for (Player p : players) {
+            if (p.getShotguns() >= 3) {
+                checkShotgunsPlayers++;
+            }
+        }
+        if (checkShotgunsPlayers == players.size()) {
+            for (Player p : players) {
+                p.setShotguns(0);
+            }
+        }
     }
 
 
