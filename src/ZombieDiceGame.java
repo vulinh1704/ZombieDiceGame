@@ -77,12 +77,12 @@ public class ZombieDiceGame {
                     System.out.println("\nPlayer " + player.getName() + "'s turn has ended!");
                     brains = 0;
                     shotguns = 0;
-                    checkIncrementCurrentPlayer = true;
                 } else {
                     reRoll = currentPlayer;
                     player.setScore(player.getScore() + brains);
                     player.setShotguns(player.getShotguns() + shotguns);
                     System.out.println("\nThe player " + player.getName() + "'s has Brains: " + player.getScore() + " and Shotguns: " + shotguns);
+                    continue;
                 }
             }
 
