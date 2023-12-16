@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Random;
 
 class ZombieDie extends Die {
@@ -33,9 +34,9 @@ class ZombieDie extends Die {
 
         if (result == 1 || result == 6) {
             return 0;
-        } else if (result == 4) {
+        } else if (result == 4 || Objects.equals(this.color, "Green")) {
             return -1;
-        } else if (result == 3) {
+        } else if (result == 3 || Objects.equals(this.color, "Red")) {
             return -2;
         } else {
             return 1;

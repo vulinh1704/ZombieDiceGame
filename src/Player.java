@@ -5,6 +5,7 @@ public class Player implements Comparator<Player> {
     private int score;
     private int gamesWon;
     private int resultRoll;
+    private int shotguns;
 
 
     public Player() {
@@ -14,6 +15,15 @@ public class Player implements Comparator<Player> {
         this.name = name;
         this.score = 0;
         this.gamesWon = 0;
+        this.shotguns = 0;
+    }
+
+    public int getShotguns() {
+        return shotguns;
+    }
+
+    public void setShotguns(int shotguns) {
+        this.shotguns = shotguns;
     }
 
     public void setScore(int score) {
