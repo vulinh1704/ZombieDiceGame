@@ -47,9 +47,15 @@ public class ZombieDiceGame {
                 System.out.println("ZombieDice Color: " + zombieDie.getColor());
             }
 
+            int i = 0;
+            System.out.print("===> Dice results: ");
             for (ZomebieDice z : currentDice) {
+                i++;
                 int result = z.roll();
-                System.out.print(z.convertRollResult(result) + " | ");
+                System.out.print(z.convertRollResult(result));
+                if (i != currentDice.size()) {
+                    System.out.print(" | ");
+                }
                 if (result == -2) {
                     shotguns++;
                 } else if (result == -1) {
