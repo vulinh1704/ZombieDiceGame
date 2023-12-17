@@ -7,6 +7,7 @@ public class ZombieDiceGame {
 
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("========================= ZOMBIE DICE GAME ===========================");
         int numPlayers;
         do {
             System.out.print("Enter number of players (3-6): ");
@@ -24,6 +25,8 @@ public class ZombieDiceGame {
         for (int i = 0; i < numPlayers; i++) {
             System.out.println("Player " + players.get(i).getName() + ": " + players.get(i).getResultRoll());
         }
+        System.out.println("--------- Press enter to continue ---------");
+        new Scanner(System.in).nextLine();
 
         int currentPlayer = 0;
         int reRoll = 0;
@@ -100,9 +103,7 @@ public class ZombieDiceGame {
                 else {
                     currentPlayer = 0;
                     reRoll = -1;
-                    for (Player p : players) {
-                        p.setScore(0);
-                    }
+                    resetScorePlayers(players);
                     continue;
                 }
             }
@@ -110,19 +111,27 @@ public class ZombieDiceGame {
             currentPlayer++;
         }
 
+        showResultGame(players);
+
+    }
+
+    public static void showResultGame(List<Player> players) {
         System.out.println("\n--------------- GAME END ------------------");
-        for (
-                Player player : players) {
+        for (Player player : players) {
             System.out.println(player);
         }
 
-        for (
-                Player player : players) {
+        for (Player player : players) {
             if (player.getScore() >= 13) {
                 System.out.println(player.getName() + " WIN !!!!");
             }
         }
+    }
 
+    public static void resetScorePlayers(List<Player> players) {
+        for (Player p : players) {
+            p.setScore(0);
+        }
     }
 
     public static void checkShotGuns(List<Player> players) {
