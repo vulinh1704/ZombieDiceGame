@@ -77,7 +77,7 @@ public class ZombieDiceGame {
                 if (player.getShotguns() >= 3) {
                     player.setScore(0);
                     System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
-                } else if (player.getScore() >= 13) {
+                } else if (player.getScore() == 13) {
                     System.out.println("\nPlayer " + player.getName() + "'s reaches the score: " + player.getScore() + " WINN!!");
                 } else {
                     reRoll = currentPlayer;
@@ -94,7 +94,7 @@ public class ZombieDiceGame {
                 checkShotGuns(players);
                 boolean flag = false;
                 for (Player p : players) {
-                    if (p.getScore() >= 13) {
+                    if (p.getScore() == 13) {
                         flag = true;
                         break;
                     }
@@ -122,7 +122,7 @@ public class ZombieDiceGame {
         }
 
         for (Player player : players) {
-            if (player.getScore() >= 13) {
+            if (player.getScore() == 13) {
                 System.out.println(player.getName() + " WIN !!!!");
             }
         }
@@ -147,7 +147,6 @@ public class ZombieDiceGame {
             }
         }
     }
-
 
     public static ArrayList<ZomebieDice> getZombieDice() {
         ArrayList<ZomebieDice> zombieDice = new ArrayList<>();
