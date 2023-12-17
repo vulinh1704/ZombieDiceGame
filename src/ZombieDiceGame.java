@@ -65,12 +65,12 @@ public class ZombieDiceGame {
                 }
             }
 
+            player.setScore(player.getScore() + brains);
+            player.setShotguns(player.getShotguns() + shotguns);
             if (zombieDice.size() == 0) {
                 System.out.println("\nThe player " + player.getName() + "'s reaches the score: " + player.getScore());
                 System.out.println("Player " + player.getName() + "'s turn has ended!\n");
             } else {
-                player.setScore(player.getScore() + brains);
-                player.setShotguns(player.getShotguns() + shotguns);
                 if (player.getShotguns() >= 3) {
                     player.setScore(0);
                     System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
