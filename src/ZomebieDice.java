@@ -1,13 +1,13 @@
 import java.util.Objects;
 import java.util.Random;
 
-class ZombieDie extends Die {
+class ZomebieDice extends Die {
     private String color;
     private int nBrains;
     private int nShotguns;
     private int nFeet;
 
-    public ZombieDie(String color) {
+    public ZomebieDice(String color) {
         super(6);
         this.color = color;
         this.nFeet = 2;
@@ -34,14 +34,12 @@ class ZombieDie extends Die {
 
         if (result == 1 || result == 6) {
             return 0;
-        } else if (result == 4 || Objects.equals(this.color, "Green")) {
+        } else if ((result == 4) || (result == 2 && Objects.equals(this.color, "Green")) || (result == 5 && Objects.equals(this.color, "Green")) || (result == 2 && Objects.equals(this.color, "Yellow"))) {
             return -1;
-        } else if (result == 3 || Objects.equals(this.color, "Red")) {
+        } else if (result == 3 || (result == 2 && Objects.equals(this.color, "Red")) || (result == 5 && Objects.equals(this.color, "Red")) || (result == 5 && Objects.equals(this.color, "Yellow"))) {
             return -2;
-        } else if (result == 2) {
-            return -1;
         } else {
-            return -2;
+            return 1;
         }
     }
 
@@ -60,7 +58,7 @@ class ZombieDie extends Die {
     }
 
     public String toString() {
-        return "ZombieDie: Number of sides: " + super.toString() + ", Color: " + color + ", Feet: " + nFeet +
+        return "ZomebieDice: Number of sides: " + super.toString() + ", Color: " + color + ", Feet: " + nFeet +
                 ", Brains: " + nBrains + ", Shotguns: " + nShotguns;
     }
 }

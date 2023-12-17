@@ -22,13 +22,13 @@ public class ZombieDiceGame {
 
         System.out.println("Player order:");
         for (int i = 0; i < numPlayers; i++) {
-            System.out.println("Player " + (i + 1) + ": " + players.get(i).getResultRoll());
+            System.out.println("Player " + players.get(i).getName() + ": " + players.get(i).getResultRoll());
         }
 
         int currentPlayer = 0;
         int reRoll = 0;
         Random rand = new Random();
-        ArrayList<ZombieDie> zombieDice = getZombieDice();
+        ArrayList<ZomebieDice> zombieDice = getZombieDice();
         int shotguns = 0;
         int brains = 0;
         while (true) {
@@ -38,16 +38,16 @@ public class ZombieDiceGame {
 
             Player player = players.get(currentPlayer);
             System.out.println("Player " + player.getName() + "'s turn!!");
-            ArrayList<ZombieDie> currentDice = new ArrayList<>();
+            ArrayList<ZomebieDice> currentDice = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 if (zombieDice.size() == 0) break;
                 int index = rand.nextInt(zombieDice.size());
-                ZombieDie zombieDie = zombieDice.remove(index);
+                ZomebieDice zombieDie = zombieDice.remove(index);
                 currentDice.add(zombieDie);
-                System.out.println("ZombieDie Color: " + zombieDie.getColor());
+                System.out.println("ZomebieDice Color: " + zombieDie.getColor());
             }
 
-            for (ZombieDie z : currentDice) {
+            for (ZomebieDice z : currentDice) {
                 int result = z.roll();
                 System.out.print(z.convertRollResult(result) + " | ");
                 if (result == -2) {
@@ -59,33 +59,28 @@ public class ZombieDiceGame {
                 }
             }
 
-            boolean checkIncrementCurrentPlayer = false;
             if (player.getShotguns() >= 3) {
                 player.setScore(0);
                 System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
-                shotguns = 0;
-                brains = 0;
-                checkIncrementCurrentPlayer = true;
             } else if (player.getScore() >= 13) {
-                brains = 0;
-                shotguns = 0;
                 System.out.println("\nPlayer " + player.getName() + "'s reaches the score: " + player.getScore() + " WINN!!");
-                checkIncrementCurrentPlayer = true;
             } else {
                 if (zombieDice.size() == 0) {
                     System.out.println("\nThe player " + player.getName() + "'s reaches the score: " + player.getScore());
-                    System.out.println("\nPlayer " + player.getName() + "'s turn has ended!");
-                    brains = 0;
-                    shotguns = 0;
+                    System.out.println("Player " + player.getName() + "'s turn has ended!\n");
                 } else {
                     reRoll = currentPlayer;
                     player.setScore(player.getScore() + brains);
                     player.setShotguns(player.getShotguns() + shotguns);
+                    brains = 0;
+                    shotguns = 0;
                     System.out.println("\nThe player " + player.getName() + "'s has Brains: " + player.getScore() + " and Shotguns: " + shotguns);
                     continue;
                 }
             }
 
+            brains = 0;
+            shotguns = 0;
             if (players.size() == currentPlayer + 1) {
                 checkShotGuns(players);
                 boolean flag = false;
@@ -99,14 +94,12 @@ public class ZombieDiceGame {
                 else {
                     currentPlayer = 0;
                     reRoll = -1;
+                    continue;
                 }
             }
 
-            if(checkIncrementCurrentPlayer) {
-                currentPlayer++;
-            }
+            currentPlayer++;
         }
-
 
         System.out.println("\n--------------- GAME END ------------------");
         for (Player player : players) {
@@ -136,16 +129,16 @@ public class ZombieDiceGame {
     }
 
 
-    public static ArrayList<ZombieDie> getZombieDice() {
-        ArrayList<ZombieDie> zombieDice = new ArrayList<>();
+    public static ArrayList<ZomebieDice> getZombieDice() {
+        ArrayList<ZomebieDice> zombieDice = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            zombieDice.add(new ZombieDie("Green"));
+            zombieDice.add(new ZomebieDice("Green"));
         }
         for (int i = 0; i < 4; i++) {
-            zombieDice.add(new ZombieDie("Yellow"));
+            zombieDice.add(new ZomebieDice("Yellow"));
         }
         for (int i = 0; i < 3; i++) {
-            zombieDice.add(new ZombieDie("Red"));
+            zombieDice.add(new ZomebieDice("Red"));
         }
         return zombieDice;
     }
