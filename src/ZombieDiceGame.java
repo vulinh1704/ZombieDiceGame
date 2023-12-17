@@ -37,14 +37,14 @@ public class ZombieDiceGame {
             }
 
             Player player = players.get(currentPlayer);
-            System.out.println("Player " + player.getName() + "'s turn!!");
+            System.out.println("\nPlayer " + player.getName() + "'s turn!!");
             ArrayList<ZomebieDice> currentDice = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 if (zombieDice.size() == 0) break;
                 int index = rand.nextInt(zombieDice.size());
                 ZomebieDice zombieDie = zombieDice.remove(index);
                 currentDice.add(zombieDie);
-                System.out.println("ZomebieDice Color: " + zombieDie.getColor());
+                System.out.println("ZombieDice Color: " + zombieDie.getColor());
             }
 
             for (ZomebieDice z : currentDice) {
@@ -74,7 +74,7 @@ public class ZombieDiceGame {
                     player.setShotguns(player.getShotguns() + shotguns);
                     brains = 0;
                     shotguns = 0;
-                    System.out.println("\nThe player " + player.getName() + "'s has Brains: " + player.getScore() + " and Shotguns: " + shotguns);
+                    System.out.println("\nThe player " + player.getName() + "'s has Brains: " + player.getScore() + " and Shotguns: " + player.getShotguns());
                     continue;
                 }
             }
@@ -94,6 +94,9 @@ public class ZombieDiceGame {
                 else {
                     currentPlayer = 0;
                     reRoll = -1;
+//                    for (Player p : players) {
+//                        p.setScore(0);
+//                    }
                     continue;
                 }
             }

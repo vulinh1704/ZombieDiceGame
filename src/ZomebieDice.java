@@ -31,16 +31,14 @@ class ZomebieDice extends Die {
     public int roll() {
         Random rand = new Random();
         int result = rand.nextInt(6) + 1;
-
         if (result == 1 || result == 6) {
             return 0;
-        } else if ((result == 4) || (result == 2 && Objects.equals(this.color, "Green")) || (result == 5 && Objects.equals(this.color, "Green")) || (result == 2 && Objects.equals(this.color, "Yellow"))) {
+        } else if (result == 4 || (result == 2 && Objects.equals(this.color, "Green")) || (result == 5 && Objects.equals(this.color, "Green")) || (result == 2 && Objects.equals(this.color, "Yellow"))) {
             return -1;
         } else if (result == 3 || (result == 2 && Objects.equals(this.color, "Red")) || (result == 5 && Objects.equals(this.color, "Red")) || (result == 5 && Objects.equals(this.color, "Yellow"))) {
             return -2;
-        } else {
-            return 1;
         }
+        return 1;
     }
 
     public String convertRollResult(int result) {
