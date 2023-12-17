@@ -123,7 +123,7 @@ public class ZombieDiceGame {
 
         for (Player player : players) {
             if (player.getScore() == 13) {
-                System.out.println(player.getName() + " WIN !!!!");
+                System.out.println("=========== " + player.getName() + " WIN !!!! ============");
             }
         }
     }
