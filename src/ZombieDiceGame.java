@@ -100,9 +100,9 @@ public class ZombieDiceGame {
                 else {
                     currentPlayer = 0;
                     reRoll = -1;
-//                    for (Player p : players) {
-//                        p.setScore(0);
-//                    }
+                    for (Player p : players) {
+                        p.setScore(0);
+                    }
                     continue;
                 }
             }
