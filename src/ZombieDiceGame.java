@@ -59,19 +59,19 @@ public class ZombieDiceGame {
                 }
             }
 
-            if (player.getShotguns() >= 3) {
-                player.setScore(0);
-                System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
-            } else if (player.getScore() >= 13) {
-                System.out.println("\nPlayer " + player.getName() + "'s reaches the score: " + player.getScore() + " WINN!!");
+            if (zombieDice.size() == 0) {
+                System.out.println("\nThe player " + player.getName() + "'s reaches the score: " + player.getScore());
+                System.out.println("Player " + player.getName() + "'s turn has ended!\n");
             } else {
-                if (zombieDice.size() == 0) {
-                    System.out.println("\nThe player " + player.getName() + "'s reaches the score: " + player.getScore());
-                    System.out.println("Player " + player.getName() + "'s turn has ended!\n");
+                player.setScore(player.getScore() + brains);
+                player.setShotguns(player.getShotguns() + shotguns);
+                if (player.getShotguns() >= 3) {
+                    player.setScore(0);
+                    System.out.println("\nTURN OVER Player " + player.getName() + "'s - 3 shotguns! All points lost.");
+                } else if (player.getScore() >= 13) {
+                    System.out.println("\nPlayer " + player.getName() + "'s reaches the score: " + player.getScore() + " WINN!!");
                 } else {
                     reRoll = currentPlayer;
-                    player.setScore(player.getScore() + brains);
-                    player.setShotguns(player.getShotguns() + shotguns);
                     brains = 0;
                     shotguns = 0;
                     System.out.println("\nThe player " + player.getName() + "'s has Brains: " + player.getScore() + " and Shotguns: " + player.getShotguns());
@@ -105,11 +105,13 @@ public class ZombieDiceGame {
         }
 
         System.out.println("\n--------------- GAME END ------------------");
-        for (Player player : players) {
+        for (
+                Player player : players) {
             System.out.println(player);
         }
 
-        for (Player player : players) {
+        for (
+                Player player : players) {
             if (player.getScore() >= 13) {
                 System.out.println(player.getName() + " WIN !!!!");
             }
